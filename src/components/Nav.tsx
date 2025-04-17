@@ -1,24 +1,5 @@
+import { routes } from "@/constants/routes"
 import { ChevronDown, Search, UserRound, Star, ShoppingBag} from "lucide-react"
-
-const routes = [
-  {
-    name: "Home",
-    href: "#",
-  },
-  {
-    name: "Shop",
-    href: "#",
-  },
-  {
-    name: "Products",
-    href: "#",
-  },
-  {
-    name: "Pages",
-    href: "#",
-    subPages: true
-  },
-]
 
 function Nav() {
   return (
