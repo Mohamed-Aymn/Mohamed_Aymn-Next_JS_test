@@ -10,7 +10,7 @@ function Footer() {
                     <a href="#" className="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
                         <span className="text-black self-center text-2xl font-semibold whitespace-nowrap ">FASCO</span>
                     </a>
-                    <ul className="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 gap-3">
+                    <ul className="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 gap-8">
                         {routes.map((route) => (
                             <li key={route.name}>
                                 <a
@@ -23,7 +23,7 @@ function Footer() {
                         ))}
                     </ul>
                 </div>
-                <span className="block text-sm text-gray-500 sm:text-center">Copyright © 2022 <a href="https://flowbite.com/" className="hover:underline">FASCO</a>. All Rights Reserved.</span>
+                <span className="block text-sm mt-10 text-gray-500 sm:text-center">Copyright © 2022 <a href="https://flowbite.com/" className="hover:underline">FASCO</a>. All Rights Reserved.</span>
             </div>
         </footer>
     )
