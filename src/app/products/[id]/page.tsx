@@ -4,6 +4,7 @@ import Image from 'next/image'
 import QuantityButton from '@/components/QuantityButton'
 import { Package2, Share2, Truck } from 'lucide-react'
 import StockIndicator from '@/components/StockIndicator'
+import CartControllers from '@/components/CartControllers'
 
 // Define the product type
 type Product = {
@@ -79,14 +80,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ product }) => {
                 <div className='my-12'>
                     <div className='mb-3'>Quantity</div>
                     <div className="grid grid-cols-8 gap-4">
-                        <QuantityButton
-                            className="col-span-2"
-                            productId={product.id}
-                        />
-                        <AddToCartButton
-                            className="col-span-6"
-                            productId={product.id}
-                        />
+                        <CartControllers productId={product.id} />
                     </div>
                 </div>
 

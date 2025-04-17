@@ -7,6 +7,7 @@ import { ChevronRight } from 'lucide-react'
 import Image from 'next/image'
 import Checkbox from '@/components/Checkbox'
 import Button from '@/components/Button'
+import QuantityButton from '@/components/QuantityButton'
 
 type Product = {
     id: number
@@ -16,8 +17,9 @@ type Product = {
 }
 
 function Cart() {
-    const { products } = useCartStore()
+    const { products, removeProduct } = useCartStore()
     const [checked, isChecked] = useState(false)
+    const {increaseCount, decreaseCount} = useCartStore()
 
     const { data, isLoading } = useQuery({
         queryKey: ['cart-products', products.map(p => p.id)],
@@ -66,7 +68,7 @@ function Cart() {
                                 const total = productData.price * quantity
                                 return (
                                     <tr key={productData.id} className="border-b">
-                                        <td className="py-3 flex gap-4">
+                                        <td className="py-12 flex gap-4">
                                             <Image
                                                 src={productData.image}
                                                 alt={productData.title}
@@ -76,12 +78,25 @@ function Cart() {
                                             />
                                             <div className='max-w-xs'>
                                                 <div className='font-bold mb-6'>{productData.title}</div>
-                                                <div className='text-gray-500 underline'>Remove</div>
+                                                <div 
+                                                    className='text-gray-500 underline cursor-pointer'
+                                                    onClick={() => removeProduct(productData.id)}
+                                                >
+                                                    Remove
+                                                </div>
                                             </div>
                                         </td>
-                                        <td className="py-3 align-top">${productData.price.toFixed(2)}</td>
-                                        <td className="py-3 align-top">{quantity}</td>
-                                        <td className="py-3 font-semibold align-top text-right">${total.toFixed(2)}</td>
+                                        <td className="py-12 align-top font-bold">${productData.price.toFixed(2)}</td>
+                                        <td className="py-12 align-top">
+                                            <QuantityButton
+                                                increaseCount={() => increaseCount(productData.id)}
+                                                decreaseCount={() => decreaseCount(productData.id)}
+                                                className='w-fit' 
+                                                quantity={quantity}
+                                                
+                                            />
+                                        </td>
+                                        <td className="py-12 font-bold align-top text-right">${total.toFixed(2)}</td>
                                     </tr>
                                 )
                             })

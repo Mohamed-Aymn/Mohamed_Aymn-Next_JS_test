@@ -9,24 +9,25 @@ interface IProduct {
 
 interface ICartStore {
     products: Array<IProduct>
-    addProduct: (id: number) => void
+    addProduct: (id: number, count: number) => void
     removeProduct: (id: number) => void
     increaseCount: (id: number) => void
     decreaseCount: (id: number) => void
+    getCount: (id: number) => number
 }
 
 const useStore = create<ICartStore>()(
     persist(
-        (set) => ({
+        (set, get) => ({
             products: [],
 
-            addProduct: (id: number) =>
+            addProduct: (id: number, count: number) =>
                 set((state) => {
                     const existingProduct = state.products.find((product) => product.id === id)
                     if (existingProduct) return state
 
                     return {
-                        products: [...state.products, { id, count: 1 }],
+                        products: [...state.products, { id, count }],
                     }
                 }),
 
@@ -50,6 +51,11 @@ const useStore = create<ICartStore>()(
                             : product
                     ),
                 })),
+
+            getCount: (id) => {
+                const product = get().products.find((p) => p.id === id);
+                return product?.count ?? 1;
+            },
         }),
         {
             name: 'cart-storage', // localStorage key name
