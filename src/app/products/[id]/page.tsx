@@ -1,3 +1,4 @@
+import AddToCartButton from '@/components/AddToCartButton'
 import React from 'react'
 
 // Define the product type
@@ -24,6 +25,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ product }) => {
             />
             <p className="mb-4">{product.description}</p>
             <p className="text-blue-600 font-bold">${product.price}</p>
+            <AddToCartButton productId={product.id} />
         </div>
     )
 }
@@ -38,15 +40,6 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
         description: product.description,
     }
 }
-
-// export async function generateStaticParams() {
-//     // This function is required for static generation with App Router
-//     const res = await fetch('https://fakestoreapi.com/products')
-//     const products = await res.json()
-//     return products.map((product: Product) => ({
-//         id: product.id.toString(),
-//     }))
-// }
 
 // Fetch product data for server-side rendering
 export async function ProductPageServerSide({ params }: { params: { id: string } }) {
