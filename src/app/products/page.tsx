@@ -38,14 +38,14 @@ async function Products() {
                 </h2>
 
                 <div className="flex gap-4">
-                    <Button className='px-4 py-4'>
-                        <Image src={'/three.svg'} alt="1" width={20} height={20} />
+                    <Button className='px-3 py-3'>
+                        <Image src={'/three.svg'} alt="1" width={12} height={12} />
                     </Button>
-                    <Button className='px-4 py-4'>
-                        <Image src={'/four.svg'} alt="1" width={20} height={20} />
+                    <Button className='px-3 py-3'>
+                        <Image src={'/four.svg'} alt="1" width={12} height={12} />
                     </Button>
-                    <Button className='px-4 py-4'>
-                        <Image src={'/five.svg'} alt="1" width={20} height={20} />
+                    <Button className='px-3 py-3'>
+                        <Image src={'/five.svg'} alt="1" width={12} height={12} />
                     </Button>
                 </div>
             </div>
