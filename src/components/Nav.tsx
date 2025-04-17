@@ -1,7 +1,11 @@
+"use client"
+
 import { routes } from "@/constants/routes"
+import useCartStore from "@/stores/useCartStore"
 import { ChevronDown, Search, UserRound, Star, ShoppingBag} from "lucide-react"
 
 function Nav() {
+  const {products} = useCartStore()
   return (
     <nav className="bg-white w-full z-20 start-0 border-b border-gray-200 mb-24">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -13,7 +17,10 @@ function Nav() {
             <Search />
             <UserRound />
             <Star />
-            <ShoppingBag />
+            <div>
+              <ShoppingBag />
+              {products.length > 0 && <span className="absolute top-2 right-1 rounded-full bg-red-600 w-6 h-6 flex items-center justify-center text-white text-xs">{products.length}</span>}
+            </div>
           </div>
 
           {/* <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center ">Get started</button> */}
