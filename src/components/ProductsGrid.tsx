@@ -16,7 +16,7 @@ const fetchProducts = async (): Promise<Product[]> => {
     return res.json()
 }
 
-export default function Products() {
+export default function ProductsGrid() {
     const { data, isLoading } = useQuery({
         queryKey: ['products'],
         queryFn: fetchProducts,

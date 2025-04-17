@@ -12,7 +12,7 @@ function Footer() {
                     </a>
                     <ul className="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 gap-3">
                         {routes.map((route) => (
-                            <li>
+                            <li key={route.name}>
                                 <a
                                     href={route.href}
                                     className="py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 flex gap-[0.1em]"
