@@ -37,7 +37,7 @@ async function Products() {
                     <ChevronDown className="scale-50" />
                 </h2>
 
-                <div className="text-white flex gap-4">
+                <div className="flex gap-4">
                     <Button className='px-4 py-4'>
                         <Image src={'/three.svg'} alt="1" width={20} height={20} />
                     </Button>

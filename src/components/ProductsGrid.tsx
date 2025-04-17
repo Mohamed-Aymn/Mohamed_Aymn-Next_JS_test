@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import React, { useState } from 'react'
+import Button from './Button'
 
 type Product = {
     id: number
@@ -50,15 +51,15 @@ export default function ProductsGrid({ initialProducts }: { initialProducts: Pro
             </div>
 
             {/* Pagination controls */}
-            <div className="mt-6 flex justify-center gap-2">
+            <div className="mt-28 flex justify-center gap-2">
                 {pageNumbers.map((number) => (
-                    <button
+                    <Button
                         key={number}
                         onClick={() => handlePageChange(number)}
-                        className={`px-4 py-2 border rounded-md ${currentPage === number ? 'bg-blue-600 text-white' : 'bg-gray-200 hover:bg-gray-300'} transition`}
+                        variant={currentPage === number ? 'primary' : 'ghost'}
                     >
                         {number}
-                    </button>
+                    </Button>
                 ))}
             </div>
         </div>
