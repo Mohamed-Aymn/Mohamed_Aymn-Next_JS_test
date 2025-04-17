@@ -28,7 +28,7 @@ export default function Checkbox({
                 onChange={onChange}
                 className="peer hidden"
             />
-            <div className="w-5 h-5 rounded border border-gray-300 flex items-center justify-center transition">
+            <div className="w-5 h-5 border-4 border-gray-900 flex items-center justify-center transition">
                 {checked && <Check />}
                 <svg
                     className="w-3 h-3 text-white hidden peer-checked:block"
@@ -40,7 +40,7 @@ export default function Checkbox({
                     <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
             </div>
-            <span className="text-sm text-gray-800">{children}</span>
+            <span className="text-sm text-[#8A8A8A]">{children}</span>
         </label>
     );
 }

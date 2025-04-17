@@ -10,13 +10,13 @@ function Nav() {
   const [isSidebar, setIsSidebar] = useState(false)
 
   return (
-    <nav className="bg-white w-full z-20 start-0 border-b border-gray-200 mb-24">
+    <nav className="bg-white w-full z-20 start-0 border-b border-gray-200 mb-24 text-[#484848]">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto py-10 relative z-30">
         <a href="#" className="flex items-center space-x-3 rtl:space-x-reverse">
-          <span className="text-black self-center text-2xl font-semibold whitespace-nowrap">FASCO</span>
+          <span className="text-[#484848] self-center text-2xl font-semibold whitespace-nowrap">FASCO</span>
         </a>
         <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-          <div className="hidden md:flex gap-6 text-black">
+          <div className="hidden md:flex gap-6">
             <Search />
             <UserRound />
             <Star />

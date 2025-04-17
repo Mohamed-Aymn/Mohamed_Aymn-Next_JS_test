@@ -8,6 +8,7 @@ import Image from 'next/image'
 import Checkbox from '@/components/Checkbox'
 import Button from '@/components/Button'
 import QuantityButton from '@/components/QuantityButton'
+import Link from 'next/link'
 
 type Product = {
     id: number
@@ -69,13 +70,15 @@ function Cart() {
                                 return (
                                     <tr key={productData.id} className="border-b">
                                         <td className="py-12 flex gap-4">
-                                            <Image
-                                                src={productData.image}
-                                                alt={productData.title}
-                                                width={150}
-                                                height={150}
-                                                className="object-contain my-4"
-                                            />
+                                            <Link href={`/products/${productData.id}`}>
+                                                <Image
+                                                    src={productData.image}
+                                                    alt={productData.title}
+                                                    width={150}
+                                                    height={150}
+                                                    className="object-contain my-4"
+                                                />
+                                            </Link>
                                             <div className='max-w-xs'>
                                                 <div className='font-bold mb-6'>{productData.title}</div>
                                                 <div 
@@ -112,7 +115,7 @@ function Cart() {
                             // label="I agree to the terms and conditions"
                             children={
                                 <>
-                                    For <span className='font-bold'>$100</span> Please Wrap The Product
+                                    For <span className='font-bold text-black'>$100</span> Please Wrap The Product
                                 </>
                             }
                             checked={checked}
@@ -123,7 +126,7 @@ function Cart() {
                             <span>SubTotal </span>
                             <span>$100</span>
                         </div>
-                        <Button variant='speical' className='w-full px-4 py-4'>
+                        <Button variant="speical" className="w-full px-4 py-4 shadow-xl mb-12">
                             Checkout
                         </Button>
                     </div>
