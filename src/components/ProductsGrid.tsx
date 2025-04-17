@@ -1,6 +1,7 @@
 'use client'
 
 import { useQuery } from '@tanstack/react-query'
+import Link from 'next/link'
 import React, { useState } from 'react'
 
 type Product = {
@@ -60,7 +61,8 @@ export default function ProductsGrid() {
             <h1 className="text-2xl font-bold mb-6">Products</h1>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 {paginatedData?.map((product) => (
-                    <div
+                    <Link
+                        href={`/products/${product.id}`}
                         key={product.id}
                         className="border rounded-md p-4 flex flex-col items-center hover:shadow-lg transition"
                     >
@@ -71,7 +73,7 @@ export default function ProductsGrid() {
                         />
                         <h2 className="text-sm font-semibold text-center line-clamp-2">{product.title}</h2>
                         <p className="text-blue-600 font-bold mt-2">${product.price}</p>
-                    </div>
+                    </Link>
                 ))}
             </div>
 
