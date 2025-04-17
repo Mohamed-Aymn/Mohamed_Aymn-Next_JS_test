@@ -1,6 +1,6 @@
-import { BarBox } from '@/components/BarBox'
 import ProductsGrid from '@/components/ProductsGrid'
 import { ChevronDown, ChevronRight } from 'lucide-react'
+import Image from 'next/image'
 import React from 'react'
 
 type Product = {
@@ -37,9 +37,15 @@ async function Products() {
                 </h2>
 
                 <div className="text-white flex gap-4">
-                    <BarBox count={3} />
-                    <BarBox count={4} />
-                    <BarBox count={5} />
+                    <div className='bg-white p-2'>
+                        <Image src={'/three.svg'} alt="1" width={20} height={20} />
+                    </div>
+                    <div className='bg-white p-2'>
+                        <Image src={'/four.svg'} alt="1" width={20} height={20} />
+                    </div>
+                    <div className='bg-white p-2'>
+                        <Image src={'/five.svg'} alt="1" width={20} height={20} />
+                    </div>
                 </div>
             </div>
 
