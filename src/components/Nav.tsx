@@ -20,14 +20,14 @@ function Nav() {
             <Search />
             <UserRound />
             <Star />
-            <div className="relative">
+            <a href="/cart" className="relative cursor-pointer">
               <ShoppingBag />
               {products.length > 0 && (
                 <span className="absolute top-[-1em] right-[-1em] rounded-full bg-red-600 w-6 h-6 flex items-center justify-center text-white text-xs">
                   {products.length}
                 </span>
               )}
-            </div>
+            </a>
           </div>
           <button
             onClick={() => setIsSidebar(true)}

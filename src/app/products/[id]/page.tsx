@@ -1,5 +1,5 @@
 import AddToCartButton from '@/components/AddToCartButton'
-import React from 'react'
+import React, { useState } from 'react'
 import Image from 'next/image'
 import QuantityButton from '@/components/QuantityButton'
 import { Package2, Share2, Truck } from 'lucide-react'
@@ -50,9 +50,9 @@ const ProductPage: React.FC<ProductPageProps> = ({ product }) => {
             <Image
                 src={product.image}
                 alt={product.title}
-                width={500} 
+                width={500}
                 height={500}
-                // className="h-64 object-contain mb-4 mx-auto"
+                className="object-contain mb-4 mx-auto"
             />
             <div>
                 <div>FASCO</div>
@@ -118,10 +118,6 @@ const ProductPage: React.FC<ProductPageProps> = ({ product }) => {
                         Guarantee safe & secure checkout
                     </div>
                 </div>
-
-
-
-
             </div>
         </div>
     )

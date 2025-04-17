@@ -1,9 +1,12 @@
 "use client"
 
-import React from 'react'
+import React, { useState } from 'react'
 import useCartStore from '@/stores/useCartStore'
 import { useQuery } from '@tanstack/react-query'
 import { ChevronRight } from 'lucide-react'
+import Image from 'next/image'
+import Checkbox from '@/components/Checkbox'
+import Button from '@/components/Button'
 
 type Product = {
     id: number
@@ -14,6 +17,7 @@ type Product = {
 
 function Cart() {
     const { products } = useCartStore()
+    const [checked, isChecked] = useState(false)
 
     const { data, isLoading } = useQuery({
         queryKey: ['cart-products', products.map(p => p.id)],
@@ -29,20 +33,20 @@ function Cart() {
     return (
         <div className="p-4">
             <div className="mx-auto w-fit flex flex-col justify-center items-center mb-6">
-                <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl mb-3">Fashion</h1>
+                <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl mb-3">Shopping Cart</h1>
                 <div className="flex gap-2 items-center">
                     <span>Home</span> <ChevronRight /> <span>Your Shopping Cart</span>
                 </div>
             </div>
 
-            <div className="overflow-x-auto">
-                <table className="min-w-full border border-gray-300 rounded">
-                    <thead className="bg-gray-100">
+            <div className="overflow-x-auto mt-12">
+                <table className="min-w-full">
+                    <thead className="border-b">
                         <tr>
-                            <th className="p-3 text-left">Product</th>
-                            <th className="p-3 text-left">Price</th>
-                            <th className="p-3 text-left">Quantity</th>
-                            <th className="p-3 text-left">Total</th>
+                            <th className="py-6 text-left">Product</th>
+                            <th className="py-6 text-left">Price</th>
+                            <th className="py-6 text-left">Quantity</th>
+                            <th className="py-6 text-right">Total</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -61,17 +65,54 @@ function Cart() {
                                 const quantity = cartItem?.count ?? 0
                                 const total = productData.price * quantity
                                 return (
-                                    <tr key={productData.id} className="border-t">
-                                        <td className="p-3">{productData.title}</td>
-                                        <td className="p-3">${productData.price.toFixed(2)}</td>
-                                        <td className="p-3">{quantity}</td>
-                                        <td className="p-3 font-semibold">${total.toFixed(2)}</td>
+                                    <tr key={productData.id} className="border-b">
+                                        <td className="py-3 flex gap-4">
+                                            <Image
+                                                src={productData.image}
+                                                alt={productData.title}
+                                                width={150}
+                                                height={150}
+                                                className="object-contain my-4"
+                                            />
+                                            <div className='max-w-xs'>
+                                                <div className='font-bold mb-6'>{productData.title}</div>
+                                                <div className='text-gray-500 underline'>Remove</div>
+                                            </div>
+                                        </td>
+                                        <td className="py-3 align-top">${productData.price.toFixed(2)}</td>
+                                        <td className="py-3 align-top">{quantity}</td>
+                                        <td className="py-3 font-semibold align-top text-right">${total.toFixed(2)}</td>
                                     </tr>
                                 )
                             })
                         )}
                     </tbody>
                 </table>
+
+                <div className='grid grid-cols-2 mt-12'>
+                    <div className="col-span-1"></div>
+                    <div className='col-span-1'>
+                        <Checkbox
+                            id="terms"
+                            // label="I agree to the terms and conditions"
+                            children={
+                                <>
+                                    For <span className='font-bold'>$100</span> Please Wrap The Product
+                                </>
+                            }
+                            checked={checked}
+                            onChange={() => isChecked(!checked)}
+                            className='border-b pb-4'
+                        />
+                        <div className='my-4 flex justify-between'>
+                            <span>SubTotal </span>
+                            <span>$100</span>
+                        </div>
+                        <Button variant='speical' className='w-full px-4 py-4'>
+                            Checkout
+                        </Button>
+                    </div>
+                </div>
             </div>
         </div>
     )
