@@ -3,7 +3,23 @@ import ProductsGrid from '@/components/ProductsGrid'
 import { ChevronDown, ChevronRight } from 'lucide-react'
 import React from 'react'
 
-function Products() {
+type Product = {
+    id: number
+    title: string
+    image: string
+    price: number
+}
+
+const fetchProducts = async (): Promise<Product[]> => {
+    const res = await fetch('https://fakestoreapi.com/products')
+    if (!res.ok) throw new Error('Failed to fetch')
+    return res.json()
+}
+
+
+async function Products() {
+    const products = await fetchProducts()
+
     return (
         <>
             <div className="w-full">
@@ -28,7 +44,8 @@ function Products() {
             </div>
 
             {/* products */}
-            <ProductsGrid />
+            {/* <ProductsGrid /> */}
+            <ProductsGrid initialProducts={products} />
 
             {/* pagination */}
         </>

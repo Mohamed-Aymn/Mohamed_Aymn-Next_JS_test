@@ -1,6 +1,5 @@
 'use client'
 
-import { useQuery } from '@tanstack/react-query'
 import Link from 'next/link'
 import React, { useState } from 'react'
 
@@ -11,41 +10,16 @@ type Product = {
     price: number
 }
 
-const fetchProducts = async (): Promise<Product[]> => {
-    const res = await fetch('https://fakestoreapi.com/products')
-    if (!res.ok) throw new Error('Failed to fetch')
-    return res.json()
-}
-
-export default function ProductsGrid() {
-    const { data, isLoading } = useQuery({
-        queryKey: ['products'],
-        queryFn: fetchProducts,
-    })
-
+export default function ProductsGrid({ initialProducts }: { initialProducts: Product[] }) {
     const [currentPage, setCurrentPage] = useState(1)
-    const itemsPerPage = 12 
-
-    if (isLoading) {
-        return (
-            <div className="p-8">
-                <h1 className="text-2xl font-bold mb-6">Products</h1>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                    {Array.from({ length: 8 }).map((_, i) => (
-                        <div key={i} className="animate-pulse bg-gray-200 rounded-md h-60" />
-                    ))}
-                </div>
-            </div>
-        )
-    }
+    const itemsPerPage = 12
 
     // Paginate the data
     const startIndex = (currentPage - 1) * itemsPerPage
     const endIndex = startIndex + itemsPerPage
-    const paginatedData = data?.slice(startIndex, endIndex)
+    const paginatedData = initialProducts.slice(startIndex, endIndex)
 
-    // Handle pagination
-    const totalPages = Math.ceil((data?.length ?? 0) / itemsPerPage)
+    const totalPages = Math.ceil(initialProducts.length / itemsPerPage)
 
     const handlePageChange = (page: number) => {
         if (page >= 1 && page <= totalPages) {
@@ -53,14 +27,13 @@ export default function ProductsGrid() {
         }
     }
 
-    // Create an array of page numbers for pagination
     const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1)
 
     return (
         <div className="p-8">
             <h1 className="text-2xl font-bold mb-6">Products</h1>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                {paginatedData?.map((product) => (
+                {paginatedData.map((product) => (
                     <Link
                         href={`/products/${product.id}`}
                         key={product.id}
