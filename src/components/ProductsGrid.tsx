@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import React, { useState } from 'react'
 import Button from './Button'
+import Image from 'next/image'
 
 type Product = {
     id: number
@@ -37,15 +38,17 @@ export default function ProductsGrid({ initialProducts }: { initialProducts: Pro
                     <Link
                         href={`/products/${product.id}`}
                         key={product.id}
-                        className="border rounded-md p-4 flex flex-col items-center hover:shadow-lg transition"
+                        className="p-4"
                     >
-                        <img
+                        <Image
                             src={product.image}
                             alt={product.title}
-                            className="h-32 object-contain mb-4"
+                            width={320}
+                            height={320}
+                            className="object-contain mb-4 mx-auto h-80 w-auto"
                         />
-                        <h2 className="text-sm font-semibold text-center line-clamp-2">{product.title}</h2>
-                        <p className="text-blue-600 font-bold mt-2">${product.price}</p>
+                        <h2 className="text-sm">{product.title}</h2>
+                        <p className="mt-2">${product.price}</p>
                     </Link>
                 ))}
             </div>

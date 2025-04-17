@@ -7,19 +7,19 @@ interface IRoutes {
 export const routes : Array<IRoutes> = [
     {
         name: "Home",
-        href: "#",
+        href: "/",
     },
     {
         name: "Shop",
-        href: "#",
+        href: "/",
     },
     {
         name: "Products",
-        href: "#",
+        href: "/",
     },
     {
         name: "Pages",
-        href: "#",
+        href: "/",
         subPages: true
     },
 ]
