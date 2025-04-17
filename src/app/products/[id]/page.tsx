@@ -1,5 +1,9 @@
 import AddToCartButton from '@/components/AddToCartButton'
 import React from 'react'
+import Image from 'next/image'
+import QuantityButton from '@/components/QuantityButton'
+import { Package2, Share2, Truck } from 'lucide-react'
+import StockIndicator from '@/components/StockIndicator'
 
 // Define the product type
 type Product = {
@@ -37,29 +41,88 @@ const ProductPage: React.FC<ProductPageProps> = ({ product }) => {
                 {Array.from({ length: emptyStars }).map((_, index) => (
                     <span key={`empty-${index}`} className="text-gray-300">★</span>
                 ))}
-                {rate}
             </div>
         )
     }
 
     return (
-        <div className="p-8">
-            <h1 className="text-2xl font-bold mb-4">{product.title}</h1>
-            <img
+        <div className="flex gap-32 justify-between">
+            <Image
                 src={product.image}
                 alt={product.title}
-                className="h-64 object-contain mb-4"
+                width={500} 
+                height={500}
+                // className="h-64 object-contain mb-4 mx-auto"
             />
-            <p className="mb-4">{product.description}</p>
-            <p className="text-blue-600 font-bold">${product.price}</p>
-            
-            {/* Display rating stars and count */}
-            <div className="mt-2">
-                {renderStars(rate)}
-                <span className="ml-2 text-sm text-gray-500">({count} reviews)</span>
-            </div>
+            <div>
+                <div>FASCO</div>
+                <h1 className="text-2xl font-bold">{product.title}</h1>
+                <div className="flex items-center">
+                    {renderStars(rate)}
+                    <span className="ml-2 text-sm text-gray-500">({count})</span>
+                </div>
 
-            <AddToCartButton productId={product.id} />
+                <div className='my-6 flex gap-4 items-center'>
+                    <p className="font-bold text-2xl">${product.price}</p>
+                    <span className="text-gray-500 line-through">
+                        ${(product.price + 20).toFixed(2)}
+                    </span>
+                    <span className='bg-[#DA3F3F] text-white px-2 py-1 text-sm rounded-full'>
+                        SAVE 33%
+                    </span>
+                </div>
+
+                <p className="mb-4">{product.description}</p>
+
+                <StockIndicator currentStock={9} maxStock={70} />
+
+                <div className='my-12'>
+                    <div className='mb-3'>Quantity</div>
+                    <div className="grid grid-cols-8 gap-4">
+                        <QuantityButton
+                            className="col-span-2"
+                            productId={product.id}
+                        />
+                        <AddToCartButton
+                            className="col-span-6"
+                            productId={product.id}
+                        />
+                    </div>
+                </div>
+
+                <div className='my-8 flex gap-4'>
+                    <Share2 />
+                    <span>
+                        Share
+                    </span>
+                </div>
+
+                <hr className="my-6 border-gray-200 sm:mx-auto lg:my-8" />
+
+                <div className='flex flex-col gap-2'>
+                    <div className='flex gap-2'>
+                        <Truck />
+                        <span className='font-bold'>Estimatd Delivery:</span>
+                        <span>Jul 30 - Aug 03</span>
+                    </div>
+                    <div className='flex gap-2'>
+                        <Package2 />
+                        <span className='font-bold'>Free Shipping & Returns:</span>
+                        <span>On all orders over $75</span>
+                    </div>
+                </div>
+
+                <div className='bg-gray-100 flex flex-col gap-4 p-6 justify-center items-center mt-6'>
+                    <Image src={'/banks.svg'} alt="1" width={300} height={200} /> 
+                    <div>
+                        Guarantee safe & secure checkout
+                    </div>
+                </div>
+
+
+
+
+            </div>
         </div>
     )
 }

@@ -2,11 +2,18 @@
 
 import useCartStore from '@/stores/useCartStore'
 import React from 'react'
+import Button from './Button'
 
-function AddToCartButton({ productId }: { productId: number }) {
+function AddToCartButton({ productId, className }: { productId: number; className?: string }) {
     const { addProduct } = useCartStore()
     return (
-        <button onClick={() => addProduct(productId)}>Add to cart</button>
+        <Button
+            variant='outline'
+            onClick={() => addProduct(productId)}
+            className={`${className} w-full`}
+        >
+            Add to cart
+        </Button>
     )
 }
 
