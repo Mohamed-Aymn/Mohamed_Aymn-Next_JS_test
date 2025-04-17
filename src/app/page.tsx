@@ -1,4 +1,5 @@
 import { BarBox } from "@/components/BarBox";
+import Products from "@/components/Products";
 import { ChevronDown, ChevronRight } from "lucide-react"
 
 export default function Home() {
@@ -27,6 +28,7 @@ export default function Home() {
       </div>
 
     {/* products */}
+    <Products />
 
     {/* pagination */}
 
