@@ -119,10 +119,33 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
     const res = await fetch(`https://fakestoreapi.com/products/${resolvedParams.id}`)
     const product: Product = await res.json()
 
+    const title = product.title;
+    const description = product.description;
+    const imageUrl = product.image;
+
     return {
-        title: product.title,
-        description: product.description,
-    }
+        title,
+        description,
+        openGraph: {
+            title,
+            description,
+            images: [
+                {
+                    url: imageUrl,
+                    width: 800,
+                    height: 600,
+                    alt: title,
+                }
+            ],
+            type: "website",
+        },
+        twitter: {
+            card: "summary_large_image",
+            title,
+            description,
+            images: [imageUrl],
+        },
+    };
 }
 
 export default ProductPage
