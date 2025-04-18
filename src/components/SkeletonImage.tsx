@@ -25,8 +25,8 @@ const SkeletonImage: React.FC<SkeletonImageProps> = ({ imgProps, containerProps 
             <Image
                 {...imgProps}
                 alt={imgProps.alt}
-                width={700 || imgProps.width}
-                height={700 || imgProps.height}
+                width={imgProps.width ||700}
+                height={imgProps.height || 700}
                 className={`rounded-xl transition-opacity duration-300 ${isLoading ? "opacity-0" : "opacity-100"} ${imgProps.className || ""}`}
                 onLoad={() => setIsLoading(false)}
             />

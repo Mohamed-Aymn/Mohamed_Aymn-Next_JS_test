@@ -5,7 +5,6 @@ import StockIndicator from '@/components/StockIndicator'
 import CartControllers from './CartControllers'
 import SkeletonImage from '@/components/SkeletonImage'
 
-// Define the product type
 type Product = {
     id: number
     title: string
@@ -18,26 +17,25 @@ type Product = {
     }
 }
 
-interface ProductPageProps {
-    product: Product
-}
-
-const ProductPage: React.FC<ProductPageProps> = ({ product }) => {
+// Update the component to accept params directly
+export async function ProductPage({ params }: { params: Promise<{ id: string }> }) {
+    const resolvedParams = await params;
+    // Fetch the product data inside the component
+    const res = await fetch(`https://fakestoreapi.com/products/${resolvedParams.id}`)
+    const product: Product = await res.json()
+    
     const { rate, count } = product.rating;
 
-    // Helper function to render stars based on the rating
     const renderStars = (rating: number) => {
         const totalStars = 5;
-        const filledStars = Math.round(rating); // Round the rating to the nearest integer
+        const filledStars = Math.round(rating);
         const emptyStars = totalStars - filledStars;
 
         return (
             <div className="flex items-center">
-                {/* Render filled stars */}
                 {Array.from({ length: filledStars }).map((_, index) => (
                     <span key={`filled-${index}`} className="text-yellow-500">★</span>
                 ))}
-                {/* Render empty stars */}
                 {Array.from({ length: emptyStars }).map((_, index) => (
                     <span key={`empty-${index}`} className="text-gray-300">★</span>
                 ))}
@@ -88,9 +86,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ product }) => {
 
                 <div className='my-8 flex gap-4'>
                     <Share2 />
-                    <span>
-                        Share
-                    </span>
+                    <span>Share</span>
                 </div>
 
                 <hr className="my-6 border-gray-200 sm:mx-auto lg:my-8" />
@@ -98,7 +94,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ product }) => {
                 <div className='flex flex-col gap-2'>
                     <div className='flex gap-2'>
                         <Truck />
-                        <span><b>Estimatd Delivery:</b> <span>Jul 30 - Aug 03</span></span>
+                        <span><b>Estimated Delivery:</b> <span>Jul 30 - Aug 03</span></span>
                     </div>
                     <div className='flex gap-2'>
                         <Package2 />
@@ -109,17 +105,14 @@ const ProductPage: React.FC<ProductPageProps> = ({ product }) => {
                 </div>
 
                 <div className='bg-gray-100 flex flex-col gap-4 p-6 justify-center items-center mt-6'>
-                    <Image src={'/banks.svg'} alt="1" width={300} height={200} /> 
-                    <div>
-                        Guarantee safe & secure checkout
-                    </div>
+                    <Image src={'/banks.svg'} alt="1" width={300} height={200} />
+                    <div>Guarantee safe & secure checkout</div>
                 </div>
             </div>
         </div>
     )
 }
 
-// Fetch data server-side based on the URL id
 export async function generateMetadata({ params }: { params: { id: string } }) {
     const res = await fetch(`https://fakestoreapi.com/products/${params.id}`)
     const product: Product = await res.json()
@@ -129,3 +122,5 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
         description: product.description,
     }
 }
+
+export default ProductPage

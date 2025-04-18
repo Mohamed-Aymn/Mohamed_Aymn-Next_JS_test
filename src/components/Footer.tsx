@@ -6,7 +6,7 @@ function Footer() {
         <footer className="bg-white shadow-sm text-[#484848] border-none outline-none">
             <div className="w-full max-w-screen-xl mx-auto py-4 md:py-8">
                 <hr className="my-6 border-gray-200 sm:mx-auto lg:my-8" />
-                <div className="sm:flex sm:items-center sm:justify-between">
+                <div className="sm:flex sm:items-center sm:justify-between border-0">
                     <a href="#" className="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
                         <span className="self-center text-2xl font-semibold whitespace-nowrap ">FASCO</span>
                     </a>

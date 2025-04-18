@@ -1,6 +1,6 @@
 import Button from '@/components/ui/Button'
 import ProductsGrid from '@/app/ProductsGrid'
-import { ChevronDown, ChevronRight } from 'lucide-react'
+import { ChevronDown } from 'lucide-react'
 import Image from 'next/image'
 import React from 'react'
 import PageTitle from '@/components/PageTitle'

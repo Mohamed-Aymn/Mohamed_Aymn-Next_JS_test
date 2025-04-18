@@ -14,12 +14,17 @@ interface ICartStore {
     increaseCount: (id: number) => void
     decreaseCount: (id: number) => void
     getCount: (id: number) => number
+    hasHydrated: boolean
+    setHasHydrated: (state: boolean) => void
 }
 
 const useStore = create<ICartStore>()(
     persist(
         (set, get) => ({
             products: [],
+            hasHydrated: false,
+            setHasHydrated: (state) => set({ hasHydrated: state }),
+
 
             addProduct: (id: number, count: number) =>
                 set((state) => {
@@ -59,6 +64,9 @@ const useStore = create<ICartStore>()(
         }),
         {
             name: 'cart-storage', // localStorage key name
+            onRehydrateStorage: () => (state) => {
+                state?.setHasHydrated(true)
+            },
         }
     )
 )
