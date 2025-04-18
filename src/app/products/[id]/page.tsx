@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { Package2, Share2, Truck } from 'lucide-react'
 import StockIndicator from '@/components/StockIndicator'
 import CartControllers from './CartControllers'
+import SkeletonImage from '@/components/SkeletonImage'
 
 // Define the product type
 type Product = {
@@ -46,12 +47,15 @@ const ProductPage: React.FC<ProductPageProps> = ({ product }) => {
 
     return (
         <div className="flex gap-32 justify-between flex-col lg:flex-row">
-            <Image
-                src={product.image}
-                alt={product.title}
-                width={500}
-                height={500}
-                className="object-contain mb-4 mx-auto"
+            <SkeletonImage
+                imgProps={{
+                    alt: product.title || "image",
+                    src: product.image,
+                    className: "object-contain mb-4 mx-auto",
+                }}
+                containerProps={{
+                    className: "mb-4 mx-auto h-auto w-full flex justify-center items-center",
+                }}
             />
             <div>
                 <div>FASCO</div>
