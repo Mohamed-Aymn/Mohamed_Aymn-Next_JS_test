@@ -4,6 +4,7 @@ import { ChevronDown } from 'lucide-react'
 import Image from 'next/image'
 import React from 'react'
 import PageTitle from '@/components/PageTitle'
+import { Metadata } from 'next'
 
 type Product = {
     id: number
@@ -53,3 +54,34 @@ async function Products() {
 }
 
 export default Products
+
+
+export const generateMetadata = async (): Promise<Metadata> => {
+    const title = "Fashion | Shop the Best Selling Products"
+    const description = "Browse our latest collection of fashion items, including the best selling clothing, shoes, and accessories."
+
+    return {
+        title,
+        description,
+        openGraph: {
+            title,
+            description,
+            type: "website",
+            url: "https://your-domain.com/fashion", // adjust to your route
+            images: [
+                {
+                    url: "https://your-domain.com/og-fashion.jpg", // replace with a real OG image
+                    width: 1200,
+                    height: 630,
+                    alt: "Fashion Collection",
+                }
+            ],
+        },
+        twitter: {
+            card: "summary_large_image",
+            title,
+            description,
+            images: ["https://your-domain.com/og-fashion.jpg"], // same as above
+        }
+    }
+}
