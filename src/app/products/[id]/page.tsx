@@ -4,6 +4,7 @@ import { Package2, Share2, Truck } from 'lucide-react'
 import StockIndicator from '@/components/StockIndicator'
 import CartControllers from './CartControllers'
 import SkeletonImage from '@/components/SkeletonImage'
+import { Metadata } from 'next'
 
 type Product = {
     id: number
@@ -18,7 +19,7 @@ type Product = {
 }
 
 // Update the component to accept params directly
-export async function ProductPage({ params }: { params: Promise<{ id: string }> }) {
+async function ProductPage({ params }: { params: Promise<{ id: string }> }) {
     const resolvedParams = await params;
     // Fetch the product data inside the component
     const res = await fetch(`https://fakestoreapi.com/products/${resolvedParams.id}`)
@@ -113,8 +114,9 @@ export async function ProductPage({ params }: { params: Promise<{ id: string }> 
     )
 }
 
-export async function generateMetadata({ params }: { params: { id: string } }) {
-    const res = await fetch(`https://fakestoreapi.com/products/${params.id}`)
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
+    const resolvedParams = await params;
+    const res = await fetch(`https://fakestoreapi.com/products/${resolvedParams.id}`)
     const product: Product = await res.json()
 
     return {
