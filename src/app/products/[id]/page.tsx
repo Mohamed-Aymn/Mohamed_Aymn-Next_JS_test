@@ -1,7 +1,5 @@
-import AddToCartButton from '@/components/AddToCartButton'
-import React, { useState } from 'react'
+import React from 'react'
 import Image from 'next/image'
-import QuantityButton from '@/components/QuantityButton'
 import { Package2, Share2, Truck } from 'lucide-react'
 import StockIndicator from '@/components/StockIndicator'
 import CartControllers from '@/components/CartControllers'
@@ -47,7 +45,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ product }) => {
     }
 
     return (
-        <div className="flex gap-32 justify-between">
+        <div className="flex gap-32 justify-between flex-col lg:flex-row">
             <Image
                 src={product.image}
                 alt={product.title}
@@ -79,7 +77,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ product }) => {
 
                 <div className='my-12'>
                     <div className='mb-3'>Quantity</div>
-                    <div className="grid grid-cols-8 gap-4">
+                    <div className="flex gap-2">
                         <CartControllers productId={product.id} />
                     </div>
                 </div>
@@ -96,13 +94,13 @@ const ProductPage: React.FC<ProductPageProps> = ({ product }) => {
                 <div className='flex flex-col gap-2'>
                     <div className='flex gap-2'>
                         <Truck />
-                        <span className='font-bold'>Estimatd Delivery:</span>
-                        <span>Jul 30 - Aug 03</span>
+                        <span><b>Estimatd Delivery:</b> <span>Jul 30 - Aug 03</span></span>
                     </div>
                     <div className='flex gap-2'>
                         <Package2 />
-                        <span className='font-bold'>Free Shipping & Returns:</span>
-                        <span>On all orders over $75</span>
+                        <span>
+                            <b>Free Shipping & Returns:</b> On all orders over $75
+                        </span>
                     </div>
                 </div>
 

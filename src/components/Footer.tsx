@@ -3,7 +3,7 @@ import { ChevronDown } from "lucide-react"
 
 function Footer() {
     return (
-        <footer className="bg-white shadow-sm text-[#484848]">
+        <footer className="bg-white shadow-sm text-[#484848] border-none outline-none">
             <div className="w-full max-w-screen-xl mx-auto py-4 md:py-8">
                 <hr className="my-6 border-gray-200 sm:mx-auto lg:my-8" />
                 <div className="sm:flex sm:items-center sm:justify-between">

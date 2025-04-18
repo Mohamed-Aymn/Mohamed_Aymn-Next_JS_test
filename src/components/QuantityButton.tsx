@@ -1,6 +1,5 @@
 "use client"
 
-import useCartStore from '@/stores/useCartStore';
 import React from 'react'
 
 interface IQuanityButtonProps {
@@ -11,8 +10,6 @@ interface IQuanityButtonProps {
 }
 
 function QuantityButton({ quantity, className, increaseCount, decreaseCount }: IQuanityButtonProps){
-    // const { increaseCount, decreaseCount, products } = useCartStore()
-    // const quantity = products.find((p) => p.id === productId)?.count ?? 1;
 
     return (
         <div className={`${className} flex flex-col justify-between`}>
