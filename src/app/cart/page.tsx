@@ -10,6 +10,7 @@ import Button from '@/components/ui/Button'
 import QuantityButton from '@/components/QuantityButton'
 import Link from 'next/link'
 import PageTitle from '@/components/PageTitle'
+import SkeletonImage from '@/components/SkeletonImage'
 
 type Product = {
     id: number
@@ -42,14 +43,14 @@ function Cart() {
                 <table className="min-w-full">
                     <thead className="border-b">
                         <tr>
-                            <th className="py-6 pr-2 text-left w-fit">Product</th>
+                            <th className="py-6 pr-2 text-left min-w-[30%]">Product</th>
                             <th className="py-6 px-2 text-left">Price</th>
                             <th className="py-6 px-2 text-left">Quantity</th>
                             <th className="py-6 pl-2 text-right">Total</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {isLoading ? (
+                        {products.length <= 0 || isLoading ? (
                             [...Array(3)].map((_, index) => (
                                 <tr key={index} className="border-b animate-pulse">
                                     <td className="py-12 pr-2 w-fit">
@@ -83,15 +84,28 @@ function Cart() {
                                 const total = productData.price * quantity
                                 return (
                                     <tr key={productData.id} className="border-b">
-                                        <td className="py-12 pr-2 flex gap-4 w-fit flex-col md:flex-row">
+                                        <td className="py-12 pr-2 flex gap-4 min-w-[30%] flex-col md:flex-row">
                                             <Link href={`/products/${productData.id}`}>
-                                                <Image
+
+            <SkeletonImage
+                imgProps={{
+                    alt: productData.title || "image",
+                    src: productData.image,
+                    className: "object-contain mb-4 mx-auto",
+                    width: 150,
+                    height: 150
+                }}
+                containerProps={{
+                    className: "mb-4 mx-auto h-auto w-full flex justify-center items-center",
+                }}
+            />
+                                                {/* <Image
                                                     src={productData.image}
                                                     alt={productData.title}
                                                     width={150}
                                                     height={150}
                                                     className="object-contain my-4"
-                                                />
+                                                /> */}
                                             </Link>
                                             <div className='max-w-xs'>
                                                 <div className='font-bold mb-6'>{productData.title}</div>
