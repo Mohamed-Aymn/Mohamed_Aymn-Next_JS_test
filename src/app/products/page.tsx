@@ -1,5 +1,5 @@
-import Button from '@/components/Button'
-import ProductsGrid from '@/components/ProductsGrid'
+import Button from '@/components/ui/Button'
+import ProductsGrid from '@/app/ProductsGrid'
 import { ChevronDown, ChevronRight } from 'lucide-react'
 import Image from 'next/image'
 import React from 'react'

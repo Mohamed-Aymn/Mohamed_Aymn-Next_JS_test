@@ -2,7 +2,7 @@
 
 import useCartStore from '@/stores/useCartStore'
 import React from 'react'
-import Button from './Button'
+import Button from '../../../components/ui/Button'
 
 function AddToCartButton({ productId, className, quantity }: { productId: number; className?: string, quantity: number }) {
     const { addProduct } = useCartStore()

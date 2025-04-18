@@ -2,7 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import { Package2, Share2, Truck } from 'lucide-react'
 import StockIndicator from '@/components/StockIndicator'
-import CartControllers from '@/components/CartControllers'
+import CartControllers from './CartControllers'
 
 // Define the product type
 type Product = {

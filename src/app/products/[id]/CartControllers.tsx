@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import QuantityButton from './QuantityButton'
+import QuantityButton from '../../../components/QuantityButton'
 import AddToCartButton from './AddToCartButton'
 
 function CartControllers({productId}: {productId: number}) {

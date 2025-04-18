@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import React, { useState } from 'react'
-import Button from './Button'
+import Button from '../components/ui/Button'
 import Image from 'next/image'
 
 type Product = {
