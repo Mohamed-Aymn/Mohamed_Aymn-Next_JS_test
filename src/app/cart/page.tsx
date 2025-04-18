@@ -5,10 +5,11 @@ import useCartStore from '@/stores/useCartStore'
 import { useQuery } from '@tanstack/react-query'
 import { ChevronRight } from 'lucide-react'
 import Image from 'next/image'
-import Checkbox from '@/components/Checkbox'
+import Checkbox from '@/components/ui/Checkbox'
 import Button from '@/components/ui/Button'
 import QuantityButton from '@/components/QuantityButton'
 import Link from 'next/link'
+import PageTitle from '@/components/PageTitle'
 
 type Product = {
     id: number
@@ -35,12 +36,7 @@ function Cart() {
 
     return (
         <div className="p-4">
-            <div className="mx-auto w-fit flex flex-col justify-center items-center mb-6">
-                <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl mb-3">Shopping Cart</h1>
-                <div className="flex gap-2 items-center">
-                    <span>Home</span> <ChevronRight /> <span>Your Shopping Cart</span>
-                </div>
-            </div>
+            <PageTitle title='Your Shopping Cart' description='Your Shopping Cart' />
 
             <div className="overflow-x-auto mt-12">
                 <table className="min-w-full">
