@@ -77,7 +77,6 @@ function Cart() {
                                 </tr>
                             ))
                         ) : (
-
                             data?.map((productData) => {
                                 const cartItem = products.find(p => p.id === productData.id)
                                 const quantity = cartItem?.count ?? 0
@@ -127,7 +126,6 @@ function Cart() {
                     <div className='col-span-1'>
                         <Checkbox
                             id="terms"
-                            // label="I agree to the terms and conditions"
                             children={
                                 <>
                                     For <span className='font-bold text-black'>$100</span> Please Wrap The Product
