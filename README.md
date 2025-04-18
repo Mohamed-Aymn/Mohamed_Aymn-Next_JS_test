@@ -1,4 +1,4 @@
-# Mohamed Aymn - Nest JS test
+# <span id="top">Mohamed Aymn - Next JS test</span>
 
 ## Tech Stack
 - **Language**: Typescript (as preferred)
@@ -39,3 +39,9 @@ Imporeved the search engine visibility and social sharing experience especially 
 
 Ensured the UI gracefully adapts to mobile screen sizes without layout breaks or crashing. While the task didn't include specific design requirements for mobile views, I implemented a flexible layout using utility-first CSS (e.g., Tailwind) to prevent content overflow and major rendering issues. This ensures the application remains functional and visually consistent on smaller devices, even if no dedicated mobile styling or design decisions were made.
 
+
+---
+
+> Note: The codebase is linted and free from build errors
+
+[Back To The Top](#top)
