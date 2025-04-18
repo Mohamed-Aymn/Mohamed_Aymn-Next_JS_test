@@ -43,17 +43,17 @@ function Cart() {
                 <table className="min-w-full">
                     <thead className="border-b">
                         <tr>
-                            <th className="py-6 pr-2 text-left min-w-[30%]">Product</th>
-                            <th className="py-6 px-2 text-left">Price</th>
-                            <th className="py-6 px-2 text-left">Quantity</th>
-                            <th className="py-6 pl-2 text-right">Total</th>
+                            <th className="py-6 pr-6 text-left w-[30%]">Product</th>
+                            <th className="py-6 px-6 text-left w-[20%]">Price</th>
+                            <th className="py-6 px-6 text-left w-[25%]">Quantity</th>
+                            <th className="py-6 pl-6 text-right w-[25%]">Total</th>
                         </tr>
                     </thead>
                     <tbody>
                         {products.length <= 0 || isLoading ? (
                             [...Array(3)].map((_, index) => (
                                 <tr key={index} className="border-b animate-pulse">
-                                    <td className="py-12 pr-2 w-fit">
+                                    <td className="py-12 pr-6 w-[30%]">
                                         <div className="flex flex-col md:flex-row gap-4">
                                             <div className="bg-gray-200 w-[150px] h-[150px] rounded" />
                                             <div className="flex flex-col gap-4 max-w-xs w-full">
@@ -62,17 +62,17 @@ function Cart() {
                                             </div>
                                         </div>
                                     </td>
-                                    <td className="py-12 px-2 align-top">
+                                    <td className="py-12 px-6 align-top w-[20%]">
                                         <div className="bg-gray-200 h-6 w-12 rounded" />
                                     </td>
-                                    <td className="py-12 px-2 align-top">
+                                    <td className="py-12 px-6 align-top w-[25%]">
                                         <div className="flex gap-2">
                                             <div className="bg-gray-200 h-8 w-8 rounded" />
                                             <div className="bg-gray-200 h-8 w-8 rounded" />
                                             <div className="bg-gray-200 h-8 w-8 rounded" />
                                         </div>
                                     </td>
-                                    <td className="py-12 pl-2 text-right align-top">
+                                    <td className="py-12 pl-6 text-right align-top w-[25%]">
                                         <div className="bg-gray-200 h-6 w-16 rounded ml-auto" />
                                     </td>
                                 </tr>
@@ -84,28 +84,22 @@ function Cart() {
                                 const total = productData.price * quantity
                                 return (
                                     <tr key={productData.id} className="border-b">
-                                        <td className="py-12 pr-2 flex gap-4 min-w-[30%] flex-col md:flex-row">
-                                            <Link href={`/products/${productData.id}`}>
+                                        <td className="py-12 pr-6 flex gap-4 flex-col md:flex-row">
+                                            <Link href={`/products/${productData.id}`} className='w-fit'>
 
-            <SkeletonImage
-                imgProps={{
-                    alt: productData.title || "image",
-                    src: productData.image,
-                    className: "object-contain mb-4 mx-auto",
-                    width: 150,
-                    height: 150
-                }}
-                containerProps={{
-                    className: "mb-4 mx-auto h-auto w-full flex justify-center items-center",
-                }}
-            />
-                                                {/* <Image
-                                                    src={productData.image}
-                                                    alt={productData.title}
-                                                    width={150}
-                                                    height={150}
-                                                    className="object-contain my-4"
-                                                /> */}
+                                                <SkeletonImage
+                                                    imgProps={{
+                                                        alt: productData.title || "image",
+                                                        src: productData.image,
+                                                        className: "object-contain mb-4 mx-auto",
+                                                        width: 150,
+                                                        height: 150
+                                                    }}
+                                                    containerProps={{
+                                                        className: "mb-4 h-full w-38 flex justify-center items-center",
+                                                    }}
+                                                />
+
                                             </Link>
                                             <div className='max-w-xs'>
                                                 <div className='font-bold mb-6'>{productData.title}</div>
@@ -117,8 +111,8 @@ function Cart() {
                                                 </div>
                                             </div>
                                         </td>
-                                        <td className="py-12 px-2 align-top font-bold">${productData.price.toFixed(2)}</td>
-                                        <td className="py-10 px-2 align-top">
+                                        <td className="py-12 px-6 align-top font-bold w-[20%]">${productData.price.toFixed(2)}</td>
+                                        <td className="py-10 px-6 align-top w-[25%]">
                                             <QuantityButton
                                                 increaseCount={() => increaseCount(productData.id)}
                                                 decreaseCount={() => decreaseCount(productData.id)}
@@ -127,7 +121,7 @@ function Cart() {
 
                                             />
                                         </td>
-                                        <td className="py-12 pl-2 font-bold align-top text-right">${total.toFixed(2)}</td>
+                                        <td className="py-12 pl-6 font-bold align-top text-right w-[25%]">${total.toFixed(2)}</td>
                                     </tr>
                                 )
                             })

@@ -129,15 +129,3 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
         description: product.description,
     }
 }
-
-// Fetch product data for server-side rendering
-export async function ProductPageServerSide({ params }: { params: { id: string } }) {
-    const res = await fetch(`https://fakestoreapi.com/products/${params.id}`)
-    const product: Product = await res.json()
-
-    return (
-        <ProductPage product={product} />
-    )
-}
-
-export default ProductPageServerSide
